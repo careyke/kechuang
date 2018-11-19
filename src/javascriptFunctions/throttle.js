@@ -1,0 +1,3 @@
+function throttle(func) {
+
+}
