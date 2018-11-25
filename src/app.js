@@ -3,6 +3,7 @@ import throttle from './javascriptFunctions/throttle';
 import styles from './app.less';
 import exeUnique from './javascriptFunctions/unique';
 import checkType from './javascriptFunctions/checkType';
+import { shadowCopy, deepCopy, forceDeepCopy } from './javascriptFunctions/copy';
 
 const ele = document.querySelector('#app');
 ele.className = styles['app'];
@@ -22,4 +23,41 @@ exeUnique(); //测试数组去重
         console.log('value:', item);
         console.log('type:', checkType(item));
     })
-})()
+})();
+
+//测试浅拷贝
+(function () {
+    let obj = {
+        a: {
+            c: 1,
+            d: 2
+        },
+        b: 3
+    }
+    let newObj = shadowCopy(obj);
+    obj.b = 4;
+    obj.a.c = 5;
+    console.log('shadow');
+    console.log('origin:', obj);
+    console.log('copied:', newObj);
+})();
+
+//测试深拷贝
+(function () {
+    let obj = {
+        a: {
+            c: 1,
+            d: 2
+        },
+        b: 3,
+        f:function fun1(){}
+    }
+    // let newObj = forceDeepCopy(obj);
+    let newObj = deepCopy(obj);
+    obj.b = 4;
+    obj.a.c = 5;
+    obj.f = function fun2(){};
+    console.log('deep');
+    console.log('origin:', obj);
+    console.log('copied:', newObj);
+})();
