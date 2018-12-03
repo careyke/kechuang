@@ -1,0 +1,1 @@
+export { result01 } from './question01'
