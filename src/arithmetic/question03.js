@@ -34,5 +34,5 @@ const head = {
 
 export const result03 = (function test(head) {
     let r = printListFromTailToHead(head);
-    console.log('the result of question01 is:', r);
+    console.log('the result of question03 is:', r);
 })(head);
