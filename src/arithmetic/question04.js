@@ -6,7 +6,8 @@
     this.val = x;
     this.left = null;
     this.right = null;
-    } 
+    }
+    递归来做
  */
 
 function reConstructBinaryTree(pre, vin) {
