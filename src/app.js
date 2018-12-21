@@ -5,7 +5,7 @@ import * as result from './arithmetic';
 import exeUnique from './javascriptFunctions/unique';
 import checkType from './javascriptFunctions/checkType';
 import { shadowCopy, deepCopy, forceDeepCopy } from './javascriptFunctions/copy';
-import { bubbleSort, insertSort, selectSort } from './sort'
+import { bubbleSort, insertSort, selectSort, quickSort } from './sort'
 
 // const ele = document.querySelector('#app');
 // ele.className = styles['app'];
@@ -68,6 +68,7 @@ import { bubbleSort, insertSort, selectSort } from './sort'
     console.log('origin array',arr.slice());
     // let array = bubbleSort(arr);
     // let array = insertSort(arr);
-    let array = selectSort(arr);
+    // let array = selectSort(arr);
+    let array = quickSort(arr);
     console.log('sorted array',array);
-})([3,8,4,6,2,9,7])
+})([1,0,1,0,1,0,1,0,1,0,1,0,1,0])
