@@ -5,7 +5,11 @@ import * as result from './arithmetic';
 import exeUnique from './javascriptFunctions/unique';
 import checkType from './javascriptFunctions/checkType';
 import reserveLinkArray from './javascriptFunctions/reserveLinkArray';
-import { preorderTravelByRecursion, midorderTravelByRecursion, nextorderTravelByRecursion } from './javascriptFunctions/travelTreeNode';
+import {
+    preorderTravelByRecursion, midorderTravelByRecursion, nextorderTravelByRecursion,
+    preorderTravelByStack, midorderTravelByStack, nextorderTravelByStack,
+    midorderPreNode, midorderNextNode, getTreeDepth
+} from './javascriptFunctions/travelTreeNode';
 import { shadowCopy, deepCopy, forceDeepCopy } from './javascriptFunctions/copy';
 import { bubbleSort, insertSort, selectSort, quickSort } from './sort'
 
@@ -72,8 +76,8 @@ import { bubbleSort, insertSort, selectSort, quickSort } from './sort'
     // let array = insertSort(arr);
     // let array = selectSort(arr);
     let array = quickSort(arr);
-    console.log('sorted array',array);
-})([1,0,1,0,1,0,1,0,1,0,1,0,1,0])
+    console.log('sorted array', array);
+})([1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0])
 
 function getLinkTest() {
     const fail = {
@@ -119,25 +123,44 @@ function getLinkTest() {
     print(reserveLink);
 })()
 
-function TreeNode(val){
+function TreeNode(val) {
     this.val = val;
-    this.left = this.right = null;
+    this.left = this.right = this.parent = null;
 }
-function getTestTree(){
+function getTestTree() {
     const a = new TreeNode(1);
     const b = new TreeNode(2);
     const c = new TreeNode(3);
     const d = new TreeNode(4);
     const e = new TreeNode(5);
     a.left = b;
+    b.parent = a;
     a.right = c;
+    c.parent = a;
     b.left = d;
+    d.parent = b;
     c.right = e;
-    return a;
+    e.parent = c;
+    return { root: a, nodes: [a, b, c, d, e] };
 }
-(function(){
-    let root = getTestTree();
-    console.log('preorderByRecursion:',preorderTravelByRecursion(root));
-    console.log('minorderByRecursion:',midorderTravelByRecursion(root));
-    console.log('nextorderByRecursion:',nextorderTravelByRecursion(root));
+(function () {
+    let { root, nodes } = getTestTree();
+    console.log('preorderByRecursion:', preorderTravelByRecursion(root));
+    console.log('minorderByRecursion:', midorderTravelByRecursion(root));
+    console.log('nextorderByRecursion:', nextorderTravelByRecursion(root));
+    console.log('preorderTravelByStack:', preorderTravelByStack(root));
+    console.log('midorderTravelByStack:', midorderTravelByStack(root));
+    console.log('nextorderTravelByStack:', nextorderTravelByStack(root));
+    console.log('treeDepth:',getTreeDepth(root));
+    nodes.forEach((n) => {
+        let v = n.val;
+        let preV = midorderPreNode(n);
+        console.log(preV + '<=' + v);
+    })
+    console.log('__________');
+    nodes.forEach((n) => {
+        let v = n.val;
+        let nextV = midorderNextNode(n);
+        console.log(v + '=>' + nextV);
+    })
 })()
