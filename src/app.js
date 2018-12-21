@@ -4,6 +4,8 @@ import styles from './app.less';
 import * as result from './arithmetic';
 import exeUnique from './javascriptFunctions/unique';
 import checkType from './javascriptFunctions/checkType';
+import reserveLinkArray from './javascriptFunctions/reserveLinkArray';
+import { preorderTravelByRecursion, midorderTravelByRecursion, nextorderTravelByRecursion } from './javascriptFunctions/travelTreeNode';
 import { shadowCopy, deepCopy, forceDeepCopy } from './javascriptFunctions/copy';
 import { bubbleSort, insertSort, selectSort, quickSort } from './sort'
 
@@ -64,11 +66,78 @@ import { bubbleSort, insertSort, selectSort, quickSort } from './sort'
 //     console.log('copied:', newObj);
 // })();
 
-(function (arr){
-    console.log('origin array',arr.slice());
+(function (arr) {
+    console.log('origin array', arr.slice());
     // let array = bubbleSort(arr);
     // let array = insertSort(arr);
     // let array = selectSort(arr);
     let array = quickSort(arr);
     console.log('sorted array',array);
 })([1,0,1,0,1,0,1,0,1,0,1,0,1,0])
+
+function getLinkTest() {
+    const fail = {
+        next: null,
+        value: 'fail'
+    }
+    const linkC = {
+        next: fail,
+        value: 'C'
+    }
+    const linkB = {
+        next: linkC,
+        value: 'B'
+    }
+    const linkA = {
+        next: linkB,
+        value: 'A'
+    }
+    const head = {
+        prev: null,
+        value: 'head',
+        next: linkA
+    }
+    const prinkLinkArr = (head) => {
+        const arr = [];
+        while (head) {
+            arr.push(head.value);
+            head = head.next;
+        }
+        console.log(arr);
+    }
+    return {
+        linkArray: head,
+        print: prinkLinkArr
+    }
+}
+
+(function () {
+    let testObj = getLinkTest();
+    let { print, linkArray } = testObj;
+    print(linkArray);
+    let reserveLink = reserveLinkArray(linkArray);
+    print(reserveLink);
+})()
+
+function TreeNode(val){
+    this.val = val;
+    this.left = this.right = null;
+}
+function getTestTree(){
+    const a = new TreeNode(1);
+    const b = new TreeNode(2);
+    const c = new TreeNode(3);
+    const d = new TreeNode(4);
+    const e = new TreeNode(5);
+    a.left = b;
+    a.right = c;
+    b.left = d;
+    c.right = e;
+    return a;
+}
+(function(){
+    let root = getTestTree();
+    console.log('preorderByRecursion:',preorderTravelByRecursion(root));
+    console.log('minorderByRecursion:',midorderTravelByRecursion(root));
+    console.log('nextorderByRecursion:',nextorderTravelByRecursion(root));
+})()
