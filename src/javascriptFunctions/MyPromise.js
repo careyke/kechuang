@@ -9,9 +9,9 @@ const REJECTED = 'Rejected';
 export default class MyPromise {
     constructor(stateManager) {
         this.state = PENDING;
-        this.value = null;
-        this.fulfillCallback = [];
-        this.rejectCallback = [];
+        this.value = null; //异步调用then的时候需要取出当前的值，所以要先保存住
+        this.fulfillCallback = [];  //注册现有的Fulfill方法
+        this.rejectCallback = [];   //注册现有的Reject方法
         if (stateManager) {
             executeStateManager.call(this, stateManager);
         }
@@ -31,6 +31,25 @@ export default class MyPromise {
             this.rejectCallback.push(thenCallbackWrap(onReject, thenPromise));
         }
         return thenPromise;
+    }
+
+    static resolve(value) {
+        if (value instanceof this) return value;
+        return modifyState.call(new this(), 'resolve', value);
+    }
+
+    static reject(value) {
+        if (value instanceof this) return value;
+        return modifyState.call(new this(), 'reject', value);
+    }
+
+    static deferred() {
+        var dfd = {}
+        dfd.promise = new MyPromise(function (resolve, reject) {
+            dfd.resolve = resolve;
+            dfd.reject = reject;
+        })
+        return dfd
     }
 }
 
@@ -65,12 +84,26 @@ function executeStateManager(stateManager) {
  */
 function modifyState(type, value) {
     let isResolved = type === 'resolve';
-    this.state = isResolved ? FULFILLED : REJECTED;
-    this.value = value;
-    if (isResolved) {
-        this.fulfillCallback.forEach((cb) => cb(value))
+    let thenWrap = null;
+    //注入一个value是thenable的处理逻辑
+    if (typeof value === 'object' || typeof value === 'function') {
+        try {
+            thenWrap = getThen(value);
+        } catch (error) {
+            //在取then的过程中报错，需要拒绝此次Promise
+            modifyState.call(this, 'reject', error);
+        }
+    }
+    if (thenWrap) {
+        executeStateManager.call(this, thenWrap);
     } else {
-        this.rejectCallback.forEach((cb) => cb(value))
+        this.state = isResolved ? FULFILLED : REJECTED;
+        this.value = value;
+        if (isResolved) {
+            this.fulfillCallback.forEach((cb) => cb(value))
+        } else {
+            this.rejectCallback.forEach((cb) => cb(value))
+        }
     }
 }
 
@@ -102,7 +135,8 @@ function executeThenCallback(callbcak, value, thenPromise) {
 
 /**
  * 由于then的回调函数里面需要修改当前then返回的Promise的状态
- * 所以需要构造有个闭包将thenPromise holder住
+ * 所以需要构造一个闭包将thenPromise holder住
+ * 在then的回调方法里面修改promise的状态
  * @param {*} callback 
  * @param {*} thenPromise 
  */
@@ -112,3 +146,14 @@ function thenCallbackWrap(callback, thenPromise) {
     }
 }
 
+
+function getThen(likePromise) {
+    let then = likePromise && likePromise.then;
+    if (then && typeof then === 'function') {
+        return function () {
+            //这里调用promise2的then方法，注入两个修改Primose1状态的方法（闭包），
+            //然后就可以根据promise2的状态去调用相应的方法去修改promise1的状态
+            then.call(likePromise, ...arguments);
+        }
+    }
+}
