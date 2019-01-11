@@ -12,6 +12,7 @@ import {
 } from './javascriptFunctions/travelTreeNode';
 import { shadowCopy, deepCopy, forceDeepCopy } from './javascriptFunctions/copy';
 import { bubbleSort, insertSort, selectSort, quickSort } from './sort'
+import { testMicroQueue } from './test';
 
 // const ele = document.querySelector('#app');
 // ele.className = styles['app'];
@@ -164,3 +165,5 @@ function getTestTree() {
         console.log(v + '=>' + nextV);
     })
 })()
+
+testMicroQueue();
