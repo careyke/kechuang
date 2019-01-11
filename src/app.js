@@ -13,6 +13,7 @@ import {
 import { shadowCopy, deepCopy, forceDeepCopy } from './javascriptFunctions/copy';
 import { bubbleSort, insertSort, selectSort, quickSort } from './sort'
 import { testMicroQueue } from './test';
+import initRRTodoList from './react-redux-todoLists/entry';
 
 // const ele = document.querySelector('#app');
 // ele.className = styles['app'];
@@ -167,3 +168,6 @@ function getTestTree() {
 })()
 
 testMicroQueue();
+
+//初始化react-redux todolists
+initRRTodoList();
