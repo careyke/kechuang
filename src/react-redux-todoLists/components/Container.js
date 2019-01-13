@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 import styles from './Container.less';
 import Header from './Header';
-import Body from './Body';
+import { WrappedBody } from './Body';
 
 export default class Container extends Component {
     constructor(props) {
@@ -16,7 +16,7 @@ export default class Container extends Component {
         return (
             <div className={styles['container']} >
                 <Header />
-                <Body />
+                <WrappedBody />
             </div>
         )
     }

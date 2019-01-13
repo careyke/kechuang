@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
+    "immutable": "^4.0.0-rc.12",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-redux": "^6.0.0",
