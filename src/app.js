@@ -1,6 +1,6 @@
 import debounce from './javascriptFunctions/debounce';
 import throttle from './javascriptFunctions/throttle';
-import styles from './app.less';
+// import styles from './app.less';
 import * as result from './arithmetic';
 import exeUnique from './javascriptFunctions/unique';
 import checkType from './javascriptFunctions/checkType';
