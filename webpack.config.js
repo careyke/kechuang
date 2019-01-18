@@ -16,7 +16,7 @@ const htmlPlugin = new HtmlTemplatePlugin({
 
 module.exports = {
     mode: 'development',
-    devtool: 'eval-source-map',
+    devtool: 'eval',
     entry: {
         app: path.resolve(SRC_PATH, 'app.js')
     },
