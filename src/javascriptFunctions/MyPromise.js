@@ -105,6 +105,7 @@ function modifyState(type, value) {
             this.rejectCallback.forEach((cb) => cb(value))
         }
     }
+    return this;
 }
 
 /**

@@ -12,6 +12,7 @@ import {
 } from './javascriptFunctions/travelTreeNode';
 import { shadowCopy, deepCopy, forceDeepCopy } from './javascriptFunctions/copy';
 import { bubbleSort, insertSort, selectSort, quickSort } from './sort'
+import textCO from './javascriptFunctions/autoExecGenerator';
 import { testMicroQueue } from './test';
 import initRRTodoList from './react-redux-todoLists/entry';
 import initRMTodoList from './react-mobx-todolists/entry';
@@ -167,6 +168,8 @@ function getTestTree() {
         console.log(v + '=>' + nextV);
     })
 })()
+
+textCO(); //测试CO
 
 testMicroQueue();
 
