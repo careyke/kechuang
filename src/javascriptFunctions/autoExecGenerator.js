@@ -35,8 +35,8 @@ function autoExecGenerator(generator) {
             let { value } = result;
             //这里有一个toPromise的逻辑，这里简化处理不做。可以参看co源码
             if (value && isPromise(value)) return value.then(onFulfilled, onReject);
-            return onRejected(new TypeError('You may only yield a function, promise, generator, array, or object, '
-                + 'but the following object was passed: "' + String(ret.value) + '"'));
+            return onReject(new TypeError('You may only yield a function, promise, generator, array, or object, '
+                + 'but the following object was passed: "' + String(result.value) + '"'));
         }
 
         //begin exe generator

@@ -175,4 +175,4 @@ testMicroQueue();
 
 //初始化react-redux todolists
 // initRRTodoList();
-initRMTodoList();
+// initRMTodoList();
