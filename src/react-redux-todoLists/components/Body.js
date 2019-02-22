@@ -43,8 +43,16 @@ class Body extends Component {
         }
     }
 
+    onSortClick=()=>{
+        this.props.sort();
+    }
+
+    onModifyId=()=>{
+        this.props.modifyId(2,10);
+    }
+
     render() {
-        let { addTodo, deleteTodo, todolist, toggleTodo, toggleAllTodos, clearCompleteTodos } = this.props;
+        let { addTodo, deleteTodo, todolist, toggleTodo, toggleAllTodos, clearCompleteTodos, sort } = this.props;
         return (
             <div className={styles['body']}>
                 <div className={styles['todoContainer']}>
@@ -52,6 +60,8 @@ class Body extends Component {
                     <TodoList deleteTodo={deleteTodo} todolist={this.getDisplayList()} toggleTodo={toggleTodo} />
                 </div>
                 <Footer activeKey={this.state.activeKey} clearCompleteTodos={clearCompleteTodos} switchTab={this.switchTab} todolist={todolist} />
+                <button onClick={this.onSortClick} style={{height:'50px'}}>{'sort'}</button>
+                <button onClick={this.onModifyId} style={{height:'50px'}}>{'modifyId'}</button>
             </div>
         )
     }

@@ -36,3 +36,17 @@ export function clearCompleteTodos(){
         type: 'clearCompleteTodos'
     }
 }
+
+export function sort(){
+    return {
+        type: 'sort'
+    }
+}
+
+export function modifyId(oid,nid){
+    return {
+        type: 'modifyId',
+        oid,
+        nid
+    }
+}

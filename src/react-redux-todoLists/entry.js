@@ -10,7 +10,7 @@ import { Container } from './components';
 import { todoListReducer } from './reducers'
 
 export default function initRRTodoList() {
-    return ;
+    // return ;
     let appDom = document.querySelector('#app');
     let store = createStore(todoListReducer, { index: 0, todolist: List() });
     window.store = store;

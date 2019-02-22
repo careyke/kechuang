@@ -23,10 +23,19 @@ export default class TodoItem extends React.Component {
     }
 
     shouldComponentUpdate(nextProps,nextState){
+        console.log('go in shouldUpdate',this.props.todo.get('id'));
         if(nextProps.todo === this.props.todo){
             return false;
         }
         return true;
+    }
+
+    componentWillUnmount(){
+        console.log('unmount item',this.props.todo.get('id'));
+    }
+
+    componentDidMount(){
+        console.log('didmount',this.props.todo.get('id'))
     }
 
     render() {

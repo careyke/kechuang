@@ -174,5 +174,5 @@ textCO(); //测试CO
 testMicroQueue();
 
 //初始化react-redux todolists
-// initRRTodoList();
+initRRTodoList();
 // initRMTodoList();
