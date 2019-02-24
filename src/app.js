@@ -16,6 +16,7 @@ import textCO from './javascriptFunctions/autoExecGenerator';
 import { testMicroQueue } from './test';
 import initRRTodoList from './react-redux-todoLists/entry';
 import initRMTodoList from './react-mobx-todolists/entry';
+import exeReactHooksTodolist from './react-hooks-todolists/entry';
 
 // const ele = document.querySelector('#app');
 // ele.className = styles['app'];
@@ -174,5 +175,6 @@ textCO(); //测试CO
 testMicroQueue();
 
 //初始化react-redux todolists
-initRRTodoList();
+// initRRTodoList();
 // initRMTodoList();
+exeReactHooksTodolist();
