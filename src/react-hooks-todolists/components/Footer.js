@@ -1,18 +1,18 @@
 /**
  * Footer
  */
-import React from 'react';
+import React, { useCallback } from 'react';
 import classnames from 'classnames';
 import styels from './Footer.less';
 
 export default function Footer(props) {
     let { activeKey, switchTab, clearCompleteTodos, todolist } = props;
-    const handleClear = () => {
+    const handleClear = useCallback(() => {
         clearCompleteTodos();
-    }
+    }, [])
     const getLeftNum = () => {
         let leftList = todolist.filter((todo) => {
-            return todolist.completed !== true
+            return todo.completed !== true
         })
         return { leftNum: leftList.length, hideClear: todolist.length === 0 || leftList.length === todolist.length }
     }

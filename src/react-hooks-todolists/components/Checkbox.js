@@ -1,29 +1,20 @@
 /**
  * checkbox
  */
-import React, { useState } from 'react';
+import React from 'react';
 import classnames from 'classnames'
 import styles from './Checkbox.less';
+import { useToggleCheckbox } from '../customHooks'
 
 //TODO: useMemo 减少更新
 export default function Checkbox(props) {
-    let [selected, setSelected] = useState(props.selected);
+    let { selected, handleClick } = useToggleCheckbox(props);
     let iconClassName = classnames({
         [styles['icon']]: true,
         [styles['selectedIcon']]: selected,
         [styles['hide']]: props.show === false
     })
-    const handleClick = () => {
-        let currentSelected = !selected;
-        if (props.isAll) {
-            props.toggleAllTodos(currentSelected);
-        } else {
-            props.toogleTodo(currentSelected);
-        }
-        setSelected(currentSelected);
-
-    }
-
+    console.log('checkbox update')
     return (
         <div className={styles['checkbox']}>
             <span className={iconClassName} onClick={handleClick} ></span>

@@ -1,7 +1,7 @@
 /**
  * TodoItem
  */
-import React from 'react';
+import React, { useMemo } from 'react';
 import classnames from 'classnames';
 import styles from './TodoItem.less';
 import Checkbox from './Checkbox'
@@ -26,7 +26,7 @@ export default function TodoItem(props) {
     return (
         <div className={styles['todo']}>
             <div className={styles['todo_selectedIcon']}>
-                <Checkbox selected={todo.completed} toogleTodo={toogleTodo} />
+                {useMemo(() => <Checkbox selected={todo.completed} toogleTodo={toogleTodo} />, [todo.completed])}
             </div>
             <div className={styles['todo_label']}>
                 <label className={labelClass}>{todo.text}</label>

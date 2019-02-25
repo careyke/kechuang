@@ -1,7 +1,7 @@
 /**
  * Body
  */
-import React from 'react';
+import React, { useMemo } from 'react';
 import styles from './Body.less';
 import TodoInput from './TodoInput';
 import TodoItem from './TodoItem';
