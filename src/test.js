@@ -18,6 +18,12 @@ export function testMicroQueue() {
         console.log('setTimeout')
     }, 0)
 
+    new Promise(resolve=>{
+        Promise.resolve(3).then(res=>{
+            console.log('promise resolve')
+        })
+    })
+
     new Promise(resolve => {
         console.log('Promise')
         resolve()
@@ -25,6 +31,8 @@ export function testMicroQueue() {
         console.log('promise1')
     }).then(function () {
         console.log('promise2')
+    }).then(function(){
+        console.log('promise3')
     })
 
     console.log('script end')

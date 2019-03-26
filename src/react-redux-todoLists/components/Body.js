@@ -48,7 +48,7 @@ class Body extends Component {
     }
 
     onModifyId=()=>{
-        this.props.modifyId(2,10);
+        this.props.blastAdd();
     }
 
     render() {

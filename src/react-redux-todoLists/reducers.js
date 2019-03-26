@@ -20,6 +20,8 @@ export const todoListReducer = (state = {}, action) => {
             return sort(state, action);
         case 'modifyId':
             return modifyId(state, action);
+        case 'blastAdd':
+            return blastAdd(state, action)
     }
     return state;
 }
@@ -78,10 +80,18 @@ const modifyId = (state, action) => {
     let { oid, nid } = action;
     let { todolist } = state;
     todolist = todolist.map((todo) => {
-        if (todo.get('id') === oid){
-            return todo.set('id',nid)
+        if (todo.get('id') === oid) {
+            return todo.set('id', nid)
         }
         return todo
     })
+    return { ...state, todolist }
+}
+
+const blastAdd = (state, action) => {
+    let { todolist, index } = state;
+    for (let i = 0; i < 1000; i++) {
+        todolist = todolist.push(Map({ id: index++, text: 'React Fiber' }));
+    }
     return { ...state, todolist }
 }

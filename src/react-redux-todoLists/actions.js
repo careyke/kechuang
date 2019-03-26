@@ -31,22 +31,28 @@ export function toggleAllTodos(selected) {
     }
 }
 
-export function clearCompleteTodos(){
+export function clearCompleteTodos() {
     return {
         type: 'clearCompleteTodos'
     }
 }
 
-export function sort(){
+export function sort() {
     return {
         type: 'sort'
     }
 }
 
-export function modifyId(oid,nid){
+export function modifyId(oid, nid) {
     return {
         type: 'modifyId',
         oid,
         nid
+    }
+}
+
+export function blastAdd() {
+    return {
+        type: 'blastAdd'
     }
 }
