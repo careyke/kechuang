@@ -33,7 +33,9 @@ module.exports = {
     ignored: /node_modules/,
     poll: 0812
   },
-  extensions: [".js", ".ts", ".tsx"],
+  resolve: {
+    extensions: [".js", ".ts", ".tsx"]
+  },
   module: {
     rules: [
       {
@@ -50,17 +52,20 @@ module.exports = {
       },
       {
         test: /\.(css|less)$/,
+        include: SRC_PATH,
         loader: CssPluginClass.extract({
           fallback: "style-loader",
           use: [
             {
+              // loader: "typings-for-css-modules-loader",
               loader: "css-loader",
               options: {
                 sourceMap: true,
                 import: true,
                 modules: true,
                 localIdentName: CSS_CLASS_NAME,
-                importLoaders: 2
+                importLoaders: 2,
+                // namedExport: true
               }
             },
             "postcss-loader",

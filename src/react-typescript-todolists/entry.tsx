@@ -1,8 +1,8 @@
 /**
  * typescript example
  */
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import React, { ReactElement } from 'react';
+import ReactDOM from 'react-dom';
 import { StoreContext, useStore } from './customHooks'
 
 const exeReactHooksTodolist = (): void => {
@@ -10,7 +10,7 @@ const exeReactHooksTodolist = (): void => {
   ReactDOM.render(<Provider />, appDom);
 }
 
-function Provider(): React.ReactElement {
+function Provider(): ReactElement {
   const [state, dispatch] = useStore();
   return (
     <StoreContext.Provider value={{ state, dispatch }}>

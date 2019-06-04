@@ -1,16 +1,19 @@
 {
   "compilerOptions": {
-    "module":"ES6",
-    "jsx": "react",
-    "target": "es6",
+    "module":"ES6", //使用的ES6的模块机制
+    "jsx": "react", //开启jsx模式
+    "target": "es6", //编译成es6的代码，babel做剩下的转化
     "sourceMap": true,
     "rootDir": "src/react-typescript-todolists",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports":true, //允许你使用 ES2015 默认的 imports 风格, 即使你导入的代码没有使用 ES2015 默认的 export。
+    "noImplicitAny":true, //TypeScript 默认做的一件事是将变量设置为 any 类型,取消默认的类型设置
+    "strict":true, // ts检查尽可能严格
   },
   "exclude": [
     "node_modules"
   ],
   "include": [
     "src/react-typescript-todolists/*"
-  ]
+  ],
 }

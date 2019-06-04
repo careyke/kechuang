@@ -16,3 +16,11 @@ export interface IStateShape {
 export interface IReducerShape {
   (state: IStateShape | {}, action: Action): IStateShape;
 }
+
+export interface IBoundActionShape {
+  [propName: string]: (...args: any[]) => void;
+}
+
+export interface IActionCreatorsShape {
+  [propName: string]: (...args: any[]) => Action;
+}
