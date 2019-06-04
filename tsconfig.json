@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module":"ES6",
+    "jsx": "react",
+    "target": "es6",
+    "sourceMap": true,
+    "rootDir": "src/react-typescript-todolists",
+    "moduleResolution": "node"
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "src/react-typescript-todolists/*"
+  ]
+}
