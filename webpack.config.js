@@ -47,7 +47,7 @@ module.exports = {
       {
         test: /\.(ts|tsx)$/,
         loader: "awesome-typescript-loader",
-        include: TSFILEPATH,
+        include: TSFILEPATH, //解析这个目录下的.ts/,tsx文件
         exclude: path.resolve(ROOT_PATH, "node_modules")
       },
       {
@@ -57,7 +57,7 @@ module.exports = {
           fallback: "style-loader",
           use: [
             {
-              // loader: "typings-for-css-modules-loader",
+              // loader: "typings-for-css-modules-loader", //这个方案实现的样式文件的模块化很不优雅
               loader: "css-loader",
               options: {
                 sourceMap: true,

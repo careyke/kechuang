@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "module":"ES6", //使用的ES6的模块机制
+    "module":"esnext", //使用的ES6的模块机制
     "jsx": "react", //开启jsx模式
-    "target": "es6", //编译成es6的代码，babel做剩下的转化
+    "target": "esnext", //编译成es6的代码，babel做剩下的转化
     "sourceMap": true,
     "rootDir": "src/react-typescript-todolists",
     "moduleResolution": "node",

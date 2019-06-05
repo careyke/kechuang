@@ -18,6 +18,7 @@ import initRRTodoList from './react-redux-todoLists/entry'
 import initRMTodoList from './react-mobx-todolists/entry'
 import exeReactHooksTodolist from './react-hooks-todolists/entry'
 import exeReactTest from './react-test/entry';
+import exeReactTypescriptTodolist from './react-typescript-todolists/entry'
 
 // const ele = document.querySelector('#app');
 // ele.className = styles['app'];
@@ -178,8 +179,8 @@ testMicroQueue()
 // 初始化react-redux todolists
 // initRRTodoList();
 // initRMTodoList();
-exeReactHooksTodolist()
+// exeReactHooksTodolist()
 // exeReactTest();
 
 //test typescript
-
+exeReactTypescriptTodolist()

@@ -17,6 +17,10 @@ export interface IReducerShape {
   (state: IStateShape | {}, action: Action): IStateShape;
 }
 
+export interface IDispatchActionShape {
+  (...args: any[]): void;
+}
+
 export interface IBoundActionShape {
   [propName: string]: (...args: any[]) => void;
 }

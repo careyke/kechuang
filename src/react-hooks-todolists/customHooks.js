@@ -77,6 +77,7 @@ export const useChangeValueByBindFocus = (inputRef, addTodo) => {
 
     // 不知道为什么在keydownListener中取不到最新的value!!!!!!!
     // 答案：keydownListener只会在聚焦的时候才添加到监听，闭包存储的时候那个时间片段的执行上下文
+    // ***因为这里每次value修改，这个函数都会重新执行一遍，每次都会创建新的执行上下文和变量，那么存在闭包中每一次也是不一样的！！！！
     const keydownListener = useCurrentClosure((e) => {
         if (e.keyCode === 13 && focusStatus.current) {
             addTodo(value);

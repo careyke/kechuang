@@ -1,16 +1,24 @@
 /**
  * Body
  */
-import React, { useMemo } from 'react';
+import React, { ReactElement, useState } from 'react';
 import styles from './Body.less';
 import TodoInput from './TodoInput';
 import TodoItem from './TodoItem';
 import Footer from './Footer';
-import { useSwitchList } from '../customHooks';
+import { useGetActiveTodolist, useGetBoundActions } from '../customHooks';
+import { IDispatchActionShape, TodoItem as TodoItemType } from '../type'
 
-export default function Body(props) {
-    let { activeTab, boundActions, switchTab, todolist, activeTodolist } = useSwitchList(0);
-    let { addTodo, toggleAllTodos, deleteTodo, toggleTodo, clearCompleteTodos } = boundActions;
+interface ITodoListPropsShape {
+    deleteTodo: IDispatchActionShape;
+    toggleTodo: IDispatchActionShape;
+    todolist: TodoItemType[];
+}
+
+export default function Body(props: {}): ReactElement {
+    let [activeTab, switchTab] = useState(0)
+    let { todolist, activeTodolist } = useGetActiveTodolist(activeTab);
+    let { addTodo, toggleAllTodos, deleteTodo, toggleTodo, clearCompleteTodos } = useGetBoundActions();
     return (
         <div className={styles['body']}>
             <div className={styles['todoContainer']}>
@@ -22,8 +30,8 @@ export default function Body(props) {
     )
 }
 
-function TodoList(props) {
-    const getList = () => {
+function TodoList(props: ITodoListPropsShape): ReactElement {
+    const getList = (): ReactElement[] => {
         let { todolist, deleteTodo, toggleTodo } = props;
         return todolist.map((todo) => {
             return <TodoItem key={todo.id} todo={todo} deleteTodo={deleteTodo} toggleTodo={toggleTodo} />

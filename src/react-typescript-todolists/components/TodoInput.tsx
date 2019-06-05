@@ -1,14 +1,24 @@
 /**
  * todoinput
  */
-import React, { useMemo, useRef } from 'react';
+import React, { useMemo, useRef, ReactElement } from 'react';
 import styles from './TodoInput.less';
 import Checkbox from './Checkbox';
-import { useChangeValueByBindKeydown, useChangeValueByBindFocus } from '../customHooks'
+import { useChangeValueByBindFocus } from '../customHooks';
+import { IDispatchActionShape, TodoItem } from '../type'
 
-export default function TodoInput(props) {
+interface ITodoInputShape {
+    addTodo: IDispatchActionShape;
+    toggleAllTodos: IDispatchActionShape;
+    todolist: TodoItem[];
+}
+interface IInputShape {
+    addTodo: IDispatchActionShape
+}
+
+export default function TodoInput(props: ITodoInputShape): ReactElement {
     let { addTodo, todolist, toggleAllTodos } = props;
-    const getAllSelected = () => {
+    const getAllSelected = (): boolean => {
         let noAllCompleted = todolist.some((todo) => {
             return todo.completed !== true;
         })
@@ -28,7 +38,7 @@ export default function TodoInput(props) {
     )
 }
 
-function Input(props) {
+function Input(props: IInputShape): ReactElement {
     let inputRef = useRef(null);
     let { value, handleBlur, handleFocus, handleChange } = useChangeValueByBindFocus(inputRef, props.addTodo)
     // let { value, handleChange, handleKeyDown } = useChangeValueByBindKeydown(props.addTodo);
