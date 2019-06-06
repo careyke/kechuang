@@ -1,12 +1,18 @@
 /**
  * TodoItem
  */
-import React, { useMemo } from 'react';
+import React, { useMemo, ReactElement } from 'react';
 import classnames from 'classnames';
 import styles from './TodoItem.less';
 import Checkbox from './Checkbox'
+import { TodoItem, IDispatchActionShape } from '../type'
+interface ITodoItemPropsShape {
+    todo: TodoItem;
+    deleteTodo: IDispatchActionShape;
+    toggleTodo: IDispatchActionShape
+}
 
-export default function TodoItem(props) {
+export default function TodoItem(props: ITodoItemPropsShape): ReactElement {
     let { todo, deleteTodo, toggleTodo } = props;
     let iconClass = classnames({
         [styles['deleteIcon']]: true,
@@ -16,10 +22,10 @@ export default function TodoItem(props) {
         [styles['label']]: true,
         [styles['completeLabel']]: todo.completed
     })
-    const deleteClick = () => {
+    const deleteClick = (): void => {
         deleteTodo(todo.id);
     }
-    const toogleTodo = (selected) => {
+    const toogleTodo = (selected: boolean): void => {
         let id = todo.id;
         toggleTodo(id, selected);
     }

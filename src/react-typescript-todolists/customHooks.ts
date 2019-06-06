@@ -117,3 +117,21 @@ export const useCurrentClosure = (
   const fnProxy = useCallback((...args) => fnRef.current(...args), []);
   return fnProxy;
 };
+
+export const useToggleCheckbox = (props: {
+  [propName: string]: any;
+}): { selected: boolean; handleClick: () => void } => {
+  const [selected, setSelected] = useState(props.selected);
+  if (selected !== props.selected) {
+    setSelected(props.selected);
+  }
+  const handleClick = useCallback(() => {
+    if (props.isAll) {
+      props.toggleAllTodos(!selected);
+    } else {
+      props.toogleTodo(!selected);
+    }
+    setSelected(!selected);
+  }, [selected]);
+  return { selected, handleClick };
+};

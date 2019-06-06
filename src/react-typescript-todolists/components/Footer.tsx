@@ -1,16 +1,23 @@
 /**
  * Footer
  */
-import React, { useCallback } from 'react';
+import React, { useCallback, ReactElement } from 'react';
 import classnames from 'classnames';
 import styels from './Footer.less';
+import { IDispatchActionShape, TodoItem } from '../type'
+interface IFooterPropsShape {
+    activeKey: number;
+    clearCompleteTodos: IDispatchActionShape;
+    switchTab: (n: number) => void;
+    todolist: TodoItem[];
+}
 
-export default function Footer(props) {
+export default function Footer(props: IFooterPropsShape): ReactElement {
     let { activeKey, switchTab, clearCompleteTodos, todolist } = props;
     const handleClear = useCallback(() => {
         clearCompleteTodos();
     }, [])
-    const getLeftNum = () => {
+    const getLeftNum = (): { leftNum: number, hideClear: boolean } => {
         let leftList = todolist.filter((todo) => {
             return todo.completed !== true
         })
