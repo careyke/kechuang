@@ -3,6 +3,7 @@ const CssPluginClass = require("extract-text-webpack-plugin"); //css 提出打�
 const HtmlTemplatePlugin = require("html-webpack-plugin"); // html模板，自动引进js和css
 
 const ROOT_PATH = path.resolve(__dirname, "./");
+console.log(ROOT_PATH);
 const BUILD_PATH = path.resolve(ROOT_PATH, "output");
 const SRC_PATH = path.resolve(ROOT_PATH, "src");
 const JS_NAME = "js/[name].js";
@@ -24,7 +25,7 @@ module.exports = {
   output: {
     filename: JS_NAME,
     path: BUILD_PATH,
-    publicPath: BUILD_PATH //所有打包资源的基础路径
+    publicPath: './' //所有打包资源的基础路径
   },
   plugins: [cssPlugin, htmlPlugin],
   watch: true,
