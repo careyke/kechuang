@@ -1,11 +1,13 @@
 const path = require("path");
 const CssPluginClass = require("extract-text-webpack-plugin"); //css 提出打包
 const HtmlTemplatePlugin = require("html-webpack-plugin"); // html模板，自动引进js和css
+const copyWebpackPlugin = require("copy-webpack-plugin");
 
 const ROOT_PATH = path.resolve(__dirname, "./");
 console.log(ROOT_PATH);
 const BUILD_PATH = path.resolve(ROOT_PATH, "output");
 const SRC_PATH = path.resolve(ROOT_PATH, "src");
+const STATIC_PATH = path.resolve(ROOT_PATH, "static");
 const JS_NAME = "js/[name].js";
 const CSS_NAME = "css/[name].css";
 const CSS_CLASS_NAME = "[name]_[local]_[hash:base64:4]";
@@ -14,6 +16,12 @@ const htmlPlugin = new HtmlTemplatePlugin({
   filename: path.resolve(BUILD_PATH, "index.html"),
   template: path.resolve(ROOT_PATH, "template", "index.html")
 });
+const copyPlugin = new copyWebpackPlugin([
+  {
+    from: path.resolve(STATIC_PATH),
+    to: path.resolve(BUILD_PATH)
+  }
+]);
 const TSFILEPATH = path.resolve(ROOT_PATH, "src", "react-typescript-todolists");
 
 module.exports = {
@@ -25,9 +33,9 @@ module.exports = {
   output: {
     filename: JS_NAME,
     path: BUILD_PATH,
-    publicPath: './' //所有打包资源的基础路径
+    publicPath: "./" //所有打包资源的基础路径
   },
-  plugins: [cssPlugin, htmlPlugin],
+  plugins: [cssPlugin, htmlPlugin, copyPlugin],
   watch: true,
   watchOptions: {
     aggregateTimeout: 500,
@@ -65,7 +73,7 @@ module.exports = {
                 import: true,
                 modules: true,
                 localIdentName: CSS_CLASS_NAME,
-                importLoaders: 2,
+                importLoaders: 2
                 // namedExport: true
               }
             },
