@@ -2,23 +2,23 @@
  * todoinput
  */
 import React, { Component } from 'react';
+import { observer } from 'mobx-react'
 import styles from './TodoInput.less';
 import Checkbox from './Checkbox';
-import { observer, inject } from 'mobx-react';
+import store from '../store';
 
-@inject('store')
 @observer
-class TodoInput extends Component {
+export default class TodoInput extends Component {
     constructor(props) {
         super(props);
     }
 
     render() {
-        let { addTodo, todolist, toggleAllTodos, selectedAll } = this.props.store;
+        const { addTodo, selectedAll, showSelectedAll, toggleAllTodos } = store;
         return (
             <div className={styles['todoInput']}>
                 <div className={styles['todoInput_checkbox']}>
-                    <Checkbox isAll={true} show={todolist.length > 0} selected={selectedAll} toggleAllTodos={toggleAllTodos} />
+                    <Checkbox isAll={true} show={showSelectedAll} selected={selectedAll} toggleAllTodos={toggleAllTodos} />
                 </div>
                 <div className={styles['todoInput_input']}>
                     <Input addTodo={addTodo} />
@@ -27,8 +27,6 @@ class TodoInput extends Component {
         )
     }
 }
-
-export default TodoInput;
 
 class Input extends Component {
     constructor(props) {

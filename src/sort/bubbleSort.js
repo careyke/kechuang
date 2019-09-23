@@ -8,7 +8,7 @@
  */
 import { checkArray, exchange } from './sortUtils';
 
-export default function bubbleSort(array) {
+export  function bubbleSort(array) {
     if (!checkArray(array)) return;
     let len = array.length;
     for (let i = len - 1; i > 0; i--) {

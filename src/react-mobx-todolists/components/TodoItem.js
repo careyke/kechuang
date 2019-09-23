@@ -2,11 +2,12 @@
  * TodoItem
  */
 import React from 'react';
+import {observer} from 'mobx-react'
 import classnames from 'classnames';
 import styles from './TodoItem.less';
 import Checkbox from './Checkbox'
-import {observer} from 'mobx-react'
 
+@observer
 export default class TodoItem extends React.Component {
     constructor(props) {
         super(props);
@@ -17,22 +18,32 @@ export default class TodoItem extends React.Component {
         deleteTodo(todo.id);
     }
 
-    toogleTodo = () => {
-        let { todo } = this.props;
-        todo.toggle();
+    toogleTodo = (selected) => {
+        let { todo, toggleTodo } = this.props;
+        let id = todo.id;
+        toggleTodo(id, selected);
     }
 
     shouldComponentUpdate(nextProps,nextState){
+        // mobx中使用forceUpdate方法来刷新，会跳过shouldComponentUpdate的执行
+        console.log('go in shouldUpdate',this.props.todo.id);
         if(nextProps.todo === this.props.todo){
             return false;
         }
         return true;
     }
 
+    componentWillUnmount(){
+        console.log('unmount item',this.props.todo.id);
+    }
+
+    componentDidMount(){
+        console.log('didmount',this.props.todo.id)
+    }
+
     render() {
         let { todo } = this.props;
-        let text = todo.text;
-        let completed = todo.completed === true ? true : false;
+        let completed = todo.completed;
         let iconClass = classnames({
             [styles['deleteIcon']]: true,
             [styles['show_delete']]: true
@@ -45,10 +56,10 @@ export default class TodoItem extends React.Component {
         return (
             <div className={styles['todo']}>
                 <div className={styles['todo_selectedIcon']}>
-                    <Checkbox selected={todo.completed} toogleTodo={this.toogleTodo} />
+                    <Checkbox selected={completed} toogleTodo={this.toogleTodo} />
                 </div>
                 <div className={styles['todo_label']}>
-                    <label className={labelClass}>{text}</label>
+                    <label className={labelClass}>{todo.text}</label>
                     <span className={iconClass} onClick={this.deleteClick} ></span>
                 </div>
             </div>

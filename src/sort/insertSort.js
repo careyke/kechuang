@@ -5,7 +5,7 @@
  */
 import { checkArray, exchange } from './sortUtils';
 
-export default function insertSort(array) {
+export  function insertSort(array) {
     if (!checkArray(array)) return;
     let len = array.length;
     for (let i = 1; i < len; i++) {

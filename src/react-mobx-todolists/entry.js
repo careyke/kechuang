@@ -1,18 +1,15 @@
 /**
- * 入口
+ * react-redux todolists entry
  */
-import { Provider } from 'mobx-react';
-import store from './store';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Container } from './components';
+import store from './store';
 
 export default function initRMTodoList() {
-    let appDom = document.querySelector('#app');
     window.store = store;
+    let appDom = document.querySelector('#app');
     ReactDOM.render(
-        <Provider store={store} >
-            <Container />
-        </Provider>
+        <Container />
         , appDom);
 }

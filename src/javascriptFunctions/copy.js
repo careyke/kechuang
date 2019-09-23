@@ -46,9 +46,9 @@ function getTusi(){
     console.log('本次选中应该是：',t);
 }
 
-const options=['招牌原味吐司','招牌奶酥吐司','冲绳之恋吐司']
+var options=['招牌原味吐司','招牌奶酥吐司','冲绳之恋吐司']
 
-function helpGFMakeDecision(options){
+;(function helpGFMakeDecision(options = []){
     let len = options.length;
     if(len===0) {
         console.log('巧妇难为无米之炊！！！');
@@ -72,4 +72,4 @@ function helpGFMakeDecision(options){
         }
         console.log('稍等一下，再来一次!')
     }
-}
+})(options)

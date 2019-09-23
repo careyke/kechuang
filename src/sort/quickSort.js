@@ -8,7 +8,7 @@
  */
 import { checkArray, exchange } from './sortUtils';
 
-export default function quickSort(array) {
+export function quickSort(array) {
     if (!checkArray(array)) return;
 
     const sort = (array, left = 0, right = array.length - 1) => {

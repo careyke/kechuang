@@ -6,7 +6,7 @@
  */
 import { checkArray, exchange } from './sortUtils';
 
-export default function selectSort(array) {
+export function selectSort(array) {
     if (!checkArray(array)) return;
     let len = array.length;
     for (let i = 0; i < len - 1; i++) {

@@ -8,37 +8,21 @@ import styles from './Checkbox.less';
 export default class Checkbox extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            selected: props.selected
-        }
     }
 
     handleClick = () => {
-        let { isAll, toogleTodo, toggleAllTodos } = this.props;
-        let selected = !this.state.selected;
-        this.setState({
-            selected: selected
-        })
+        let { isAll, toogleTodo, toggleAllTodos, selected } = this.props;
         if (isAll) {
-            toggleAllTodos();
+            toggleAllTodos(!selected);
         } else {
-            toogleTodo();
+            toogleTodo(!selected);
         }
-    }
-
-    static getDerivedStateFromProps(nextProps, prevState) {
-        //专门用来修改state,由于是静态方法，拿不到this.props,原来在这个生命周期做的对比工作需要换其他方式来做
-        let { selected } = nextProps;
-        if (selected !== prevState.selected) {
-            return { ...prevState, selected }
-        }
-        return null;
     }
 
     render() {
         let iconClassName = classnames({
             [styles['icon']]: true,
-            [styles['selectedIcon']]: this.state.selected,
+            [styles['selectedIcon']]: this.props.selected,
             [styles['hide']]: this.props.show === false
         })
         return (

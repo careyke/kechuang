@@ -7,7 +7,7 @@ import styles from './Container.less';
 import Header from './Header';
 import { WrappedBody } from './Body';
 
-export default class Container extends Component {
+export class Container extends Component {
     constructor(props) {
         super(props);
     }

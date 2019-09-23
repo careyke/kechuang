@@ -15,7 +15,7 @@ class Todo {
   }
 }
 
-class TodoListStore {
+export class TodoListStore {
   index = 0;
   @observable activeTab = 0; //当前页签
   @observable todos = [];
@@ -92,5 +92,3 @@ class TodoListStore {
     })
   }
 }
-
-export default new TodoListStore()
