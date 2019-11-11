@@ -16,10 +16,11 @@ import textCO from './javascriptFunctions/autoExecGenerator'
 import { testMicroQueue } from './test'
 import initRRTodoList from './react-redux-todoLists/entry'
 import exeReactHooksTodolist from './react-hooks-todolists/entry'
-import exeReactTest from './react-test/entry';
+// import exeReactTest from './react-test/entry';
 import exeReactTypescriptTodolist from './react-typescript-todolists/entry';
 import {exeReactHooksMobxTodolist} from './react-hooks-mobx-todolists/entry';
 import initRMTodoList from './react-mobx-todolists/entry';
+import exeReactTest from './reactTest/entry'
 
 // const ele = document.querySelector('#app');
 // ele.className = styles['app'];
@@ -179,10 +180,10 @@ testMicroQueue()
 
 // 初始化react-redux todolists
 // initRRTodoList();
-initRMTodoList();
+// initRMTodoList();
 // exeReactHooksTodolist()
-// exeReactTest();
 // exeReactHooksMobxTodolist();
+exeReactTest()
 
 //test typescript
 // exeReactTypescriptTodolist()

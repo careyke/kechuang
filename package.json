@@ -57,8 +57,8 @@
     "mobx": "^5.8.0",
     "mobx-react": "^5.4.3",
     "mobx-react-lite": "^1.4.1",
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
     "react-redux": "^6.0.0",
     "redux": "^4.0.1",
     "typings-for-css-modules-loader": "^1.7.0"
