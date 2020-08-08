@@ -20,7 +20,8 @@ import exeReactHooksTodolist from './react-hooks-todolists/entry'
 import exeReactTypescriptTodolist from './react-typescript-todolists/entry';
 import {exeReactHooksMobxTodolist} from './react-hooks-mobx-todolists/entry';
 import initRMTodoList from './react-mobx-todolists/entry';
-import exeReactTest from './reactTest/entry'
+import exeReactTest from './reactTest/entry';
+import exeReactHookForm from './react-hook-form/entry';
 
 // const ele = document.querySelector('#app');
 // ele.className = styles['app'];
@@ -183,7 +184,8 @@ testMicroQueue()
 // initRMTodoList();
 // exeReactHooksTodolist()
 // exeReactHooksMobxTodolist();
-exeReactTest()
+// exeReactTest()
+exeReactHookForm();
 
 //test typescript
 // exeReactTypescriptTodolist()
