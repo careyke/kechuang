@@ -10,19 +10,20 @@ export const ReactStateTest = () => {
     //   setText(text + 1);
     //   console.log(text);
     // },1000)
-    setNum(num + 1);
-    setText(text + 1);
+    // setNum(num + 1);
+    // setText(text + 1);
     // new Promise((resolve, reject) => {
     //   resolve();
     // }).then(() => {
     //   setNum(num + 1);
     //   setText(text + 1);
     // })
+    setNum(1);
   }
-  useEffect(() => {
-    setNum(num + 1);
-    setText(text + 1);
-  }, [])
+  // useEffect(() => {
+  //   setNum(num + 1);
+  //   setText(text + 1);
+  // }, [])
   console.log('render')
   return (
     <div style={{
